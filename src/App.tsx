@@ -6,6 +6,8 @@ const imgMediumPath = import.meta.env.VITE_MEDIUM_IMG_PATH
 
 const apiKey = import.meta.env.VITE_API_KEY
 
+import './styles/styles.css'
+
 function App() {
   const [popularMovies, setPopularMovies] = useState<PopularMovie[]>([])
 
@@ -25,14 +27,16 @@ function App() {
   },[])
 
   return (
-   <>
-   {popularMovies.map(movie => (
-     <div key={movie.id}>
-      <img src={movie.image} alt={movie.title} />
-      <strong>{movie.title}</strong>
-     </div>
-   ))}
-   </>
+   <div className="container">
+    <div className="wrap">
+      {popularMovies.map(movie => (
+        <div className="card" key={movie.id}>
+          <img src={movie.image} alt={movie.title} />
+          <strong>{movie.title}</strong>
+        </div>
+      ))}
+    </div>
+   </div>
   )
 }
 

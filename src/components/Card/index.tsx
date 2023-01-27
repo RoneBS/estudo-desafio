@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { api } from "../../services/api"
 import { PopularMovie } from "./type"
+
+import * as S from './styles'
  
 const imgMediumPath = import.meta.env.VITE_MEDIUM_IMG_PATH
 
@@ -26,15 +28,15 @@ export function Card() {
     getPopularMovies()
   },[])
   return (
-    <div className="container">
-    <div className="wrap">
+    <S.Container>
+    <S.CardContainer>
       {popularMovies.map(movie => (
-        <div className="card" key={movie.id}>
-          <img src={movie.image} alt={movie.title} />
-          <strong>{movie.title}</strong>
-        </div>
+        <S.Card key={movie.id}>
+          <S.MovieCover src={movie.image} alt={movie.title} />
+          <S.Text>{movie.title}</S.Text>
+        </S.Card>
       ))}
-    </div>
-   </div>
+    </S.CardContainer>
+   </S.Container>
   )
 }

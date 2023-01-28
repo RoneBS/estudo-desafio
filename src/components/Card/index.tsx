@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
+import { api } from '@/services/api'
+import { PopularMovie } from './type'
 
 import * as S from './styles'
-import { api } from '/services/api'
-import { PopularMovie } from './type'
 
 const imgMediumPath = import.meta.env.VITE_MEDIUM_IMG_PATH
 

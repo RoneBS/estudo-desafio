@@ -1,5 +1,5 @@
-import { Card } from './components/Card'
-import { GlobalStyles } from './styles/global'
+import { Card } from '/components/Card'
+import { GlobalStyles } from '/styles/global'
 
 GlobalStyles()
 

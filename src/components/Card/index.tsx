@@ -3,6 +3,7 @@ import { api } from '@/services/api'
 import { PopularMovie } from './type'
 
 import * as S from './styles'
+import { Link } from 'react-router-dom'
 
 const imgMediumPath = import.meta.env.VITE_MEDIUM_IMG_PATH
 
@@ -28,10 +29,12 @@ export function Card() {
     <S.Container>
       <S.CardContainer>
         {popularMovies.map((movie) => (
-          <S.Card key={movie.id}>
-            <S.MovieCover src={movie.image} alt={movie.title} />
-            <S.Text>{movie.title}</S.Text>
-          </S.Card>
+          <Link to={`/movie-detail/${movie.id}`} key={movie.id}>
+            <S.Card>
+              <S.MovieCover src={movie.image} alt={movie.title} />
+              <S.Text>{movie.title}</S.Text>
+            </S.Card>
+          </Link>
         ))}
       </S.CardContainer>
     </S.Container>

@@ -1,10 +1,15 @@
-import { Card } from '@/components/Card'
 import { GlobalStyles } from '@/styles/global'
+import { BrowserRouter } from 'react-router-dom'
+import { AppRoutes } from '@/routes'
 
 GlobalStyles()
 
 function App() {
-  return <Card />
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  )
 }
 
 export default App

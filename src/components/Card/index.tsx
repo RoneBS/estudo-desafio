@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 export function Card({ id, image, title }: PopularMovie) {
   return (
-    <Link to={`/movie-detail/${id}`} state={id}>
+    <Link to={`/movie-detail/${id}`}>
       <S.Card>
         <S.MovieCover src={image} alt={title} />
         <S.Text>{title}</S.Text>

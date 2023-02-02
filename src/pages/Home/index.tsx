@@ -9,7 +9,9 @@ const imgMediumPath = import.meta.env.VITE_MEDIUM_IMG_PATH
 const apiKey = import.meta.env.VITE_API_KEY
 
 export function Home() {
-  const [popularMovies, setPopularMovies] = useState<PopularMovie[]>([])
+  const [popularMovies, setPopularMovies] = useState<PopularMovie[] | null>([])
+
+  const [isLoading, setIsLoading] = useState(true)
 
   async function getPopularMovies() {
     const { data } = await api.get(`popular?api_key=${apiKey}`)
@@ -19,15 +21,20 @@ export function Home() {
     }))
 
     setPopularMovies(formattedMovies)
+    setIsLoading(false)
   }
 
   useEffect(() => {
     getPopularMovies()
   }, [])
+
+  if (isLoading) {
+    return <p style={{ color: 'white' }}>Carregando...</p>
+  }
   return (
     <S.Container>
       <S.CardContainer>
-        {popularMovies.map((movie) => (
+        {popularMovies?.map((movie) => (
           <Card
             key={movie.id}
             image={movie.image}

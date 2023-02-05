@@ -14,7 +14,7 @@ export function Home() {
   const [isLoading, setIsLoading] = useState(true)
 
   async function getPopularMovies() {
-    const { data } = await api.get(`popular?api_key=${apiKey}`)
+    const { data } = await api.get(`movie/popular?api_key=${apiKey}`)
     const formattedMovies = data.results.map((movie: PopularMovie) => ({
       ...movie,
       image: `${imgMediumPath}${movie.poster_path}`

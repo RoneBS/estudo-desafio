@@ -15,7 +15,7 @@ export function MovieDetail() {
   const { id } = movieId
 
   const GetMovieDetails = useCallback(async () => {
-    const { data } = await api.get(`${id}?api_key=${apiKey}`)
+    const { data } = await api.get(`movie/${id}?api_key=${apiKey}`)
 
     console.log(data)
     setMovieDetails(data)

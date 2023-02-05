@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
 import { FilmSlate, MagnifyingGlass } from 'phosphor-react'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState, useCallback } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
+import { api } from '@/services/api'
+
+const apiKey = import.meta.env.VITE_API_KEY
 
 export function Header() {
   const [search, setSearch] = useState('')
@@ -13,6 +16,19 @@ export function Header() {
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     debounced(e.target.value)
   }
+
+  const handleSearchMovie = useCallback(async () => {
+    const { data } = await api.get(
+      `search/movie?api_key=${apiKey}&language=en-US&query=${search}&page=1&include_adult=false`
+    )
+    console.log(data.results)
+    setSearch('')
+  }, [search])
+
+  useEffect(() => {
+    if (search === '') return
+    handleSearchMovie()
+  }, [handleSearchMovie, search])
   console.log(search)
   return (
     <header>
@@ -28,7 +44,7 @@ export function Header() {
           defaultValue={''}
           onChange={handleChange}
         />
-        <MagnifyingGlass />
+        <MagnifyingGlass style={{ color: 'white' }} />
       </nav>
     </header>
   )

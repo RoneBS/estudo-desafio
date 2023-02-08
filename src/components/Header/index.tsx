@@ -22,13 +22,16 @@ export function Header() {
     debounced(e.target.value)
   }
 
+  function handleClearInput() {
+    setSearch('')
+  }
+
   const handleSearchMovie = useCallback(async () => {
     const { data } = await api.get(
       `search/movie?api_key=${apiKey}&language=en-US&query=${search}&page=1&include_adult=false`
     )
     console.log(data.results)
     setSearchedMovies(data.results)
-    setSearch('')
   }, [search])
 
   useEffect(() => {
@@ -53,14 +56,16 @@ export function Header() {
         <MagnifyingGlass style={{ color: 'white' }} />
       </nav>
       <S.ModalContainer>
-        {searchedMovies.map((movie) => (
-          <HeaderModal
-            key={movie.id}
-            id={movie.id}
-            title={movie.title}
-            poster_path={movie.poster_path}
-          />
-        ))}
+        {search !== '' &&
+          searchedMovies.map((movie) => (
+            <HeaderModal
+              key={movie.id}
+              id={movie.id}
+              title={movie.title}
+              poster_path={movie.poster_path}
+              handleClearInput={handleClearInput}
+            />
+          ))}
       </S.ModalContainer>
     </S.Container>
   )

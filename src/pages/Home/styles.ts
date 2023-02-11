@@ -2,7 +2,10 @@ import { styled } from '@stitches/react'
 
 export const Container = styled('div', {
   display: 'flex',
-  justifyContent: 'center'
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative'
 })
 
 export const CardContainer = styled('div', {

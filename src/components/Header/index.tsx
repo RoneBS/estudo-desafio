@@ -30,7 +30,7 @@ export function Header() {
     const { data } = await api.get(
       `search/movie?api_key=${apiKey}&language=en-US&query=${search}&page=1&include_adult=false`
     )
-    console.log(data.results)
+
     setSearchedMovies(data.results)
   }, [search])
 

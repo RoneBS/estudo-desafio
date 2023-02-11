@@ -1,8 +1,9 @@
 import { Card } from '@/components/Card'
 import * as S from './styles'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { PopularMovie } from './type'
 import { api } from '@/services/api'
+import { Pagination } from '@/components/Pagination'
 
 const imgMediumPath = import.meta.env.VITE_MEDIUM_IMG_PATH
 
@@ -12,21 +13,33 @@ export function Home() {
   const [popularMovies, setPopularMovies] = useState<PopularMovie[] | null>([])
 
   const [isLoading, setIsLoading] = useState(true)
+  const [page, setPage] = useState(1)
 
-  async function getPopularMovies() {
-    const { data } = await api.get(`movie/popular?api_key=${apiKey}`)
+  const getPopularMovies = useCallback(async () => {
+    const { data } = await api.get(
+      `movie/popular?api_key=${apiKey}&page=${page}`
+    )
     const formattedMovies = data.results.map((movie: PopularMovie) => ({
       ...movie,
       image: `${imgMediumPath}${movie.poster_path}`
     }))
-
+    console.log(data.results)
+    console.log(page)
     setPopularMovies(formattedMovies)
     setIsLoading(false)
+  }, [page])
+
+  function handlePageBefore() {
+    setPage((old) => Math.max(old - 1, 1))
+  }
+
+  function handlePageNext() {
+    setPage((old) => old + 1)
   }
 
   useEffect(() => {
     getPopularMovies()
-  }, [])
+  }, [getPopularMovies])
 
   if (isLoading) {
     return <p style={{ color: 'white' }}>Carregando...</p>
@@ -43,6 +56,13 @@ export function Home() {
           />
         ))}
       </S.CardContainer>
+      {popularMovies?.length && (
+        <Pagination
+          handlePageBefore={handlePageBefore}
+          handlePageNext={handlePageNext}
+          page={page}
+        />
+      )}
     </S.Container>
   )
 }

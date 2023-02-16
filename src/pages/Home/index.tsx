@@ -5,7 +5,7 @@ import { PopularMovie } from './type'
 import { api } from '@/services/api'
 import { Pagination } from '@/components/Pagination'
 
-const imgMediumPath = import.meta.env.VITE_MEDIUM_IMG_PATH
+const imgSmallPath = import.meta.env.VITE_SMALL_IMG_PATH
 
 const apiKey = import.meta.env.VITE_API_KEY
 
@@ -19,9 +19,10 @@ export function Home() {
     const { data } = await api.get(
       `movie/popular?api_key=${apiKey}&page=${page}`
     )
+
     const formattedMovies = data.results.map((movie: PopularMovie) => ({
       ...movie,
-      image: `${imgMediumPath}${movie.poster_path}`
+      image: `${imgSmallPath}${movie.poster_path}`
     }))
     console.log(data.results)
     console.log(page)
@@ -52,6 +53,7 @@ export function Home() {
             key={movie.id}
             image={movie.image}
             title={movie.title}
+            vote_count={movie.vote_count}
             id={movie.id}
           />
         ))}

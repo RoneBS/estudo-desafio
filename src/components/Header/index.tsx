@@ -41,20 +41,20 @@ export function Header() {
   console.log(search)
   return (
     <S.Container>
-      <nav>
-        <Link to={'/'}>
+      <S.Navbar>
+        <S.LinkContainer to={'/'}>
+          <FilmSlate weight="fill" style={{ color: 'white' }} size={34} />
           <p>Filmes</p>
-          <FilmSlate weight="fill" style={{ color: 'white' }} />
-        </Link>
+        </S.LinkContainer>
 
-        <input
+        <S.InputHeader
           type="text"
           placeholder="buscar"
           defaultValue={''}
           onChange={handleChange}
         />
-        <MagnifyingGlass style={{ color: 'white' }} />
-      </nav>
+        {/* <MagnifyingGlass style={{ color: 'white' }} /> */}
+      </S.Navbar>
       <S.ModalContainer>
         {search !== '' &&
           searchedMovies.map((movie) => (

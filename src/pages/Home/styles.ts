@@ -1,16 +1,20 @@
-import { styled } from '@stitches/react'
+import styled from 'styled-components'
 
-export const Container = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  position: 'relative'
-})
+export const Container = styled.div`
+  max-width: 100vw;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #0b0909;
 
-export const CardContainer = styled('div', {
-  maxWidth: '78rem',
-  display: 'flex',
-  justifyContent: 'center',
-  flexWrap: 'wrap'
-})
+  // position: relative;
+`
+
+export const CardContainer = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`

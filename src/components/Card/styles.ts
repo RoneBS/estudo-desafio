@@ -1,26 +1,24 @@
-import { styled } from '@stitches/react'
+import styled from 'styled-components'
 
-export const Card = styled('div', {
-  width: '9.625rem',
-  height: '22.5rem',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  // border: '2px solid #fede00',
-  borderRadius: '8px',
-  background: '#000',
-  color: '#fff',
-  // padding: '0.5rem',
-  margin: '2.5rem'
-})
+export const Card = styled.div`
+  width: 14rem;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #d6d6d6;
+  border-radius: 6px;
+  background-color: #000;
+  color: #fff;
+`
 
-export const MovieCover = styled('img', {
-  maxWidth: 'fit-content'
-  // borderRadius: '8px'
-})
+export const MovieCover = styled.img`
+  width: 224px;
+  object-fit: cover;
+`
 
-export const Text = styled('strong', {
-  width: '4cm',
-  padding: '0.5rem',
-  textAlign: 'center'
-})
+export const Text = styled.strong`
+  width: 4cm;
+  padding: 0.5rem;
+  text-align: center;
+`
